@@ -1,0 +1,402 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CopyTime.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_COPYTIME_DIALOG DIALOGEX 0, 0, 319, 77
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CopyTime  -  タイムスタンプ コピー"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "参照するフォルダ",IDC_STATIC,8,8,60,16,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_FROM,76,8,180,16,ES_AUTOHSCROLL | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "参照",IDC_BTN_FROM,260,8,52,16
+    LTEXT           "コピー先のフォルダ",IDC_STATIC,8,32,64,16,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TO,76,32,180,16,ES_AUTOHSCROLL | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "参照",IDC_BTN_TO,260,32,52,16
+    CONTROL         "Button1",IDC_BTN_ABOUT,"Button",BS_OWNERDRAW,4,56,12,16
+    CONTROL         "ログ表示",IDC_CHECK_DISP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,55,40,16
+    CONTROL         "更新優先",IDC_CHECK_MODPRI,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,70,55,40,16
+    PUSHBUTTON      "プレビュー",IDC_BTN_PREVIEW,115,55,47,16
+    PUSHBUTTON      "コピー開始",IDC_BTN_EXEC,165,55,47,16
+    PUSHBUTTON      "閉じる",IDOK,215,55,47,16
+    PUSHBUTTON      "ヘルプ",IDC_BTN_HELP,265,55,47,16
+    CTEXT           "?",IDC_TXT_VERSW,4,56,12,16,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+IDD_DLG_PREVIEW DIALOGEX 0, 0, 339, 262
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE
+CAPTION "CopyTime Viewer"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "閉じる",IDOK,"Button",BS_OWNERDRAW,248,244,90,14
+    CTEXT           "閉じる",IDC_STATIC,248,244,88,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_MAIN,0,0,338,240,ES_MULTILINE | ES_READONLY | 
+                    NOT WS_BORDER | WS_VSCROLL
+END
+
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 202, 183
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CopyTime について"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,132,164,64,16,NOT WS_TABSTOP
+    CONTROL         131,IDC_STATIC,"Static",SS_BITMAP,4,4,193,63
+    LTEXT           "CopyTime\nVersion 1.1 for Windows\n\n(C) 2000-2002 INOUE. Hirokazu\n\nhttp://www.ne.jp/asahi/oasis/inoue-h/\nhttp://inoue-h.connect.to/\n\nこのプログラムはフリーウエアーです",
+                    IDC_STATIC,4,72,192,88
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,1,0,0
+ PRODUCTVERSION 1,1,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "INOUE. Hirokazu (inoue-h)\0"
+            VALUE "FileDescription", "CopyTime (copy file's time stamp)\0"
+            VALUE "FileVersion", "1, 1, 0, 0\0"
+            VALUE "InternalName", "CopyTime\0"
+            VALUE "LegalCopyright", "(C) 2000-2002 INOUE. Hirokazu\0"
+            VALUE "LegalTrademarks", "(C) 2000-2002 INOUE. Hirokazu\0"
+            VALUE "OriginalFilename", "CopyTime.EXE\0"
+            VALUE "PrivateBuild", "made with Visual C++ 6.0\0"
+            VALUE "ProductName", "CopyTime (copy file's time stamp)\0"
+            VALUE "ProductVersion", "1, 1, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_COPYTIME_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_DLG_PREVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 332
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 255
+    END
+
+    IDD_DLG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 195
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CONCEPT             BITMAP  DISCARDABLE     "res\\ico_concept.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CopyTime.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FDATA_FROM          " %-15s \t(%04d/%02d/%02d  %02d:%02d)"
+    IDS_FDATA_TO            "(%04d/%02d/%02d  %02d:%02d)\r\n"
+    IDS_ERR_FERR            "  コピー先ファイル異常\r\n"
+    IDS_ERR_FNWRT           "  コピー先ファイル 書き込み不能\r\n"
+    IDS_Q_SELTO             "コピー先フォルダの選択"
+    IDS_Q_SELFROM           "参照する（コピー元）フォルダの選択"
+    IDS_STR_PASSFROM        "\r\n参照元フォルダ : "
+    IDS_STR_ERR_NOFROM      "参照元のファイルが見つからない\r\n"
+    IDS_ERR_FWPROTECT       "  コピー先ファイルが「書込み禁止属性」です\r\n"
+    IDS_ERR_NOSRC           "参照元、コピー先の双方のフォルダを指定してください"
+    IDS_ERR_NOSRC_CAP       "CopyTimeからの情報"
+    IDS_MES_NOFILCOPY       "一つのファイルも処理されていません\n\n条件をチェックしたほうがいいかもしれません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "CopyTime"
+    IDS_MES_COPYFILECOUNT   "%d 個のファイルの日時をコピーしました"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (ｱﾒﾘｶ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_COPYTIME_DIALOG DIALOGEX 0, 0, 319, 77
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CopyTime  -  Time Stamp Copy"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Copy FROM",IDC_STATIC,8,8,60,16,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_FROM,76,8,180,16,ES_AUTOHSCROLL | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Browse",IDC_BTN_FROM,260,8,52,16
+    LTEXT           "Copy TO",IDC_STATIC,8,32,64,16,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TO,76,32,180,16,ES_AUTOHSCROLL | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Browse",IDC_BTN_TO,260,32,52,16
+    CONTROL         "Button1",IDC_BTN_ABOUT,"Button",BS_OWNERDRAW,4,56,12,16
+    CONTROL         "Log",IDC_CHECK_DISP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,55,40,16
+    CONTROL         "Mod.Pri.",IDC_CHECK_MODPRI,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,70,55,40,16
+    PUSHBUTTON      "Preview",IDC_BTN_PREVIEW,115,55,47,16
+    PUSHBUTTON      "Copy",IDC_BTN_EXEC,165,55,47,16
+    PUSHBUTTON      "Quit",IDOK,215,55,47,16
+    PUSHBUTTON      "Help",IDC_BTN_HELP,265,55,47,16
+    CTEXT           "?",IDC_TXT_VERSW,4,56,12,16,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 202, 183
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CopyTime - version information"
+FONT 9, "Arial"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,132,164,64,16,NOT WS_TABSTOP
+    CONTROL         131,IDC_STATIC,"Static",SS_BITMAP,4,4,193,63
+    LTEXT           "CopyTime\nVersion 1.1 for Windows\n\n(C) 2000-2002 INOUE. Hirokazu\n\nhttp://www.ne.jp/asahi/oasis/inoue-h/\nhttp://inoue-h.connect.to/\n\nThis program is freeware .",
+                    IDC_STATIC,4,72,192,88
+END
+
+IDD_DLG_PREVIEW DIALOGEX 0, 0, 339, 262
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE
+CAPTION "CopyTime Viewer"
+FONT 9, "Arial"
+BEGIN
+    CONTROL         "Close",IDOK,"Button",BS_OWNERDRAW,248,244,90,14
+    CTEXT           "Close",IDC_STATIC,248,244,88,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_MAIN,0,0,338,240,ES_MULTILINE | ES_READONLY | 
+                    NOT WS_BORDER | WS_VSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_COPYTIME_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_DLG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 195
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_DLG_PREVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 332
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 255
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FDATA_FROM          " %-15s \t(%04d/%02d/%02d  %02d:%02d)"
+    IDS_FDATA_TO            "(%04d/%02d/%02d  %02d:%02d)\r\n"
+    IDS_ERR_FERR            "  Destination file error\r\n"
+    IDS_ERR_FNWRT           "  Impossible to write to destination file\r\n"
+    IDS_Q_SELTO             "Select Target Folder"
+    IDS_Q_SELFROM           "Select Source Folder"
+    IDS_STR_PASSFROM        "\r\nSource Folder : "
+    IDS_STR_ERR_NOFROM      "No source file\r\n"
+    IDS_ERR_FWPROTECT       "  Target file is write protected\r\n"
+    IDS_ERR_NOSRC           "Designate both (source and target) folder"
+    IDS_ERR_NOSRC_CAP       "CopyTime - information"
+    IDS_MES_NOFILCOPY       "No file processed"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "CopyTime"
+    IDS_MES_COPYFILECOUNT   "%d file(s) processed"
+END
+
+#endif    // 英語 (ｱﾒﾘｶ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\CopyTime.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

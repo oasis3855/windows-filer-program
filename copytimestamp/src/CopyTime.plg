@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: CopyTime - Win32 Release--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+一時ﾌｧｲﾙ "f:\temp\winnt\inoue-h\RSP87.tmp" を作成し、次の内容を記録します
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/CopyTime.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"G:\mnt\data-1\DATA\SRC\VC\CopyTime\CopyTime.cpp"
+]
+Creating command line "cl.exe @"f:\temp\winnt\inoue-h\RSP87.tmp"" 
+一時ﾌｧｲﾙ "f:\temp\winnt\inoue-h\RSP88.tmp" を作成し、次の内容を記録します
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/CopyTime.pdb" /machine:I386 /out:"Release/CopyTime.exe" 
+".\Release\CopyTime.obj"
+".\Release\CopyTimeDlg.obj"
+".\Release\DlgAbout.obj"
+".\Release\DlgPreview.obj"
+".\Release\StdAfx.obj"
+".\Release\CopyTime.res"
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @"f:\temp\winnt\inoue-h\RSP88.tmp"" の作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ｺﾝﾊﾟｲﾙ中...
+CopyTime.cpp
+ﾘﾝｸ中...
+
+
+
+<h3>結果</h3>
+CopyTime.exe - ｴﾗｰ 0、警告 0
+</pre>
+</body>
+</html>

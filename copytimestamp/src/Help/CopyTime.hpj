@@ -1,0 +1,16 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+DBCS=Yes
+LCID=0x409 0x0 0x0 ; ‰pŒê (U.S.)
+REPORT=Yes
+TITLE=CopyTime User's Guide
+COPYRIGHT=(C) 2000 INOUE. Hirokazu  inoue-h@iname.com
+CITATION=(C) 2000 INOUE. Hirokazu  inoue-h@iname.com
+HLP=CopyTime.hlp
+
+[FILES]
+CopyFile.rtf
+
+[MAP]
+MAIN=1000
