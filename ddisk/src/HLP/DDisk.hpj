@@ -1,0 +1,30 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=10 phrase Zeck
+OLDKEYPHRASE=Yes
+ERRORLOG=DDisk.log
+DBCS=Yes
+REVISIONS=No
+LCID=0x411 0x0 0x0 ; 日本語
+REPORT=Yes
+CHARSET=128
+CONTENTS=TOP_PAGE
+TITLE=論理ディスク アクセスツール (Logical Disk Access Tool)
+HLP=DDisk.hlp
+
+[FILES]
+DDisk.rtf
+
+[ALIAS]
+HELP_DEFAULT=TOP_PAGE
+
+[MAP]
+#include <DDisk.hm>
+#include C:\Program Files\Microsoft Visual Studio\VC98\MFC\Include\Afxhelp.hm
+
+[WINDOWS]
+MAIN="論理ディスク アクセスツール 使用の手引き",(20,20,600,450),28932,(r13170175),(r16777160),f7
+
+[CONFIG]
+BrowseButtons()

@@ -1,0 +1,375 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\DDisk.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DDISK_DIALOG DIALOGEX 0, 0, 420, 295
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "論理ディスク アクセスツール (Logical Disk Access Tool)  - DDisk -"
+
+FONT 9, "ＭＳ ゴシック"
+BEGIN
+    COMBOBOX        IDC_COMBO_DISK,16,40,60,80,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SECT,84,40,56,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_SIZE,156,40,52,12,ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "DPB読み込み (&DPB)",IDC_BTN_DPB,228,16,80,16
+    PUSHBUTTON      "表示 (&View)",IDC_BTN_READ,228,36,80,16
+    EDITTEXT        IDC_EDIT_FNAME,12,76,204,16,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "データファイルの参照 (&File)",IDC_BTN_BROWSE,12,96,120,
+                    16
+    PUSHBUTTON      "編集 (&Edit)",IDC_BTN_EDIT,136,96,80,16
+    PUSHBUTTON      "保存 (Backup)",IDC_BTN_SAVE,228,76,80,16
+    PUSHBUTTON      "書き込み (&Write)",IDC_BTN_WRITE,228,96,80,16
+    CONTROL         "Normal Data",IDC_RADIO_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,132,120,64,12
+    CONTROL         "FAT",IDC_RADIO_TYPE2,"Button",BS_AUTORADIOBUTTON,200,
+                    120,64,12
+    CONTROL         "Root Dir",IDC_RADIO_TYPE3,"Button",BS_AUTORADIOBUTTON,
+                    268,120,64,12
+    CONTROL         "Other Data",IDC_RADIO_TYPE4,"Button",BS_AUTORADIOBUTTON,
+                    336,120,64,12
+    EDITTEXT        IDC_EDIT_PREVIEW,4,144,412,128,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | NOT WS_BORDER | 
+                    WS_VSCROLL | WS_HSCROLL,WS_EX_STATICEDGE
+    PUSHBUTTON      "設定 (&Config)",IDC_BTN_CONFIG,168,276,80,16
+    PUSHBUTTON      "ヘルプ (&Help)",IDC_BTN_HELP,252,276,80,16
+    DEFPUSHBUTTON   "終了 (&Quit)",IDOK,336,276,80,16
+    LTEXT           "ドライブ番号\nDrive",IDC_STATIC,16,16,56,16
+    LTEXT           "開始セクター\nSector",IDC_STATIC,84,16,56,20
+    LTEXT           "セクター数\nNumber of Sector",IDC_STATIC,156,16,68,16
+    GROUPBOX        "論理ディスク",IDC_STATIC,4,4,412,56
+    GROUPBOX        "データファイル 入出力",IDC_STATIC,4,64,412,76
+    LTEXT           "「論理ﾃﾞｨｽｸ」->「ﾌｧｲﾙ」",IDC_STATIC,312,80,96,12
+    LTEXT           "「ﾌｧｲﾙ」->「論理ﾃﾞｨｽｸ」",IDC_STATIC,312,100,96,12
+    LTEXT           "「論理ﾃﾞｨｽｸ」->「表示」",IDC_STATIC,312,40,96,12
+    LTEXT           "「論理ﾃﾞｨｽｸ」->「表示」",IDC_STATIC,312,20,96,12
+    SCROLLBAR       IDC_SCR_SIZE,208,40,12,12,SBS_VERT
+    SCROLLBAR       IDC_SCR_SECT,140,40,12,12,SBS_VERT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,12,116,396,20
+    LTEXT           "書き込みﾓｰﾄﾞ (Write Mode)",IDC_STATIC,16,120,108,12,
+                    SS_CENTERIMAGE
+END
+
+IDD_DIALOG_CONFIG DIALOGEX 0, 0, 303, 247
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION 
+"論理ディスク アクセスツール 機能設定 (Logical Disk Access Tool Configuration)"
+
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "INT21H Func 440DH (Windows95)",IDC_RADIO_FUNC,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP | WS_TABSTOP,
+                    12,36,276,16
+    CONTROL         "INT25H, 26H (Windows95)",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,12,52,276,16
+    CONTROL         "INT21H Func 7305H (Windows95 OSR2, Windows98)",
+                    IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,12,68,276,16
+    CONTROL         "Windows NT, Windows2000",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,12,84,276,16
+    CONTROL         "テキスト形式で表示 (View by Text)",IDC_RADIO_VIEW,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,12,
+                    120,276,16
+    CONTROL         "バイナリ・テキスト形式で表示 (View by Binary and Text mix)",
+                    IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,12,136,276,16
+    PUSHBUTTON      "About",IDC_BTN_ABOUT,140,228,50,14
+    DEFPUSHBUTTON   "OK",IDOK,192,228,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,244,228,50,14
+    GROUPBOX        "使用ファンクション (Active Function)",IDC_STATIC,4,24,
+                    292,80
+    GROUPBOX        "データ表示形式 (Data Preview Format)",IDC_STATIC,4,108,
+                    292,48
+    LTEXT           "Windows xxx Version xx.xxxx.xx-x",IDC_TEXT_WINVER,8,4,
+                    288,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "バイナリー エディターの指定 (Binary Editor)",IDC_STATIC,
+                    4,160,292,36
+    EDITTEXT        IDC_EDIT_EDITOR,8,172,224,16,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "参照 (Browse)",IDC_BTN_BROWSE,232,172,58,16
+    CONTROL         "詳細情報をプレビューエリアに表示する (Detail info to preview area)",
+                    IDC_CHECK_DETAILINFO,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,12,200,280,12
+    CONTROL         "ｾｸﾀｰ限界、ﾌｧｲﾙ限界を無視する (Ignore Sector limit and Data file limit)",
+                    IDC_CHECK_IGNOREERR,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,12,212,280,12
+END
+
+IDD_DIALOG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 207
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "バージョン情報 (Version Info)"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,220,188,50,14
+    LTEXT           "論理ディスク アクセスツール (Logical Disk Access Tool)\n  for Windows 98\n\nVersion 0.5\n\n(C) 2000 INOUE. Hirokazu\ninoue-h@iname.com",
+                    IDC_STATIC,72,8,192,64
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP,4,4,62,200
+    LTEXT           "使用許諾条件 (End User Licence Agreement)\n\nこのプログラムを使用することにより、ディスクを破壊する可能性があります。\nこのプログラムの欠陥によりディスク等が破壊された場合でも、一切の保証はいたしません。\nこのプログラムはフリーウエアーです。",
+                    IDC_STATIC,72,84,196,64
+    LTEXT           "テスト済みモデル (IA32-AT互換機)\nWindows98 v4.10.1998, 98SE v4.10.2222, 95 v4.10.950\nFAT12 (Floppy), FAT16, FAT32 (Under 8GBytes)",
+                    IDC_STATIC,72,152,196,28
+END
+
+IDD_DIALOG_INST DIALOGEX 0, 0, 302, 207
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "論理ディスク アクセスツール (Logical Disk Access Tool)"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,172,192,62,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ (Cancel)",IDCANCEL,236,192,62,14
+    CTEXT           "論理ディスク アクセスツール インストーラ (Logical Disk Access Tool Installer)",
+                    IDC_STATIC,4,8,292,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "Windowsのﾊﾞｰｼﾞｮﾝと 割り込みの種類の選択 (Windows version and Interrupt function)",
+                    IDC_STATIC,4,24,292,100
+    LTEXT           "Windows xx version xx.xx.xxxx.ss",IDC_STR_WINVER,12,40,
+                    276,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CONTROL         "INT21H Func 440DH (Windows95)",IDC_RADIO_FUNC,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP | WS_TABSTOP,
+                    12,56,276,16
+    CONTROL         "INT25H, 26H (Windows95)",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,12,72,276,16
+    CONTROL         "INT21H Func 7305H (Windows95 OSR2, Windows98)",
+                    IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,12,88,276,16
+    CONTROL         "Windows NT, Windows2000",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,12,104,276,16
+    CONTROL         "アンインストールをサポートする (Support Uninstall)",
+                    IDC_CHECK_UNINST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    12,128,280,16
+    CONTROL         "スタートメニューに登録する (Shortcut on Start menu)",
+                    IDC_CHECK_START,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,
+                    144,280,16
+    PUSHBUTTON      "ﾍﾙﾌﾟ (Help)",IDC_BUTTON_HELP,108,192,62,14
+    LTEXT           "",IDC_STR_WARNING,8,164,288,24
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,5,0,0
+ PRODUCTVERSION 0,5,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "ディスクの特定セクターを保存、または書き込みするためのツール\0"
+            VALUE "CompanyName", "inoue-h\0"
+            VALUE "FileDescription", "論理ディスク アクセスツール Logical Disk Access Tool\0"
+            VALUE "FileVersion", "0, 5, 0, 0\0"
+            VALUE "InternalName", "DDisk\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000 INOUE. Hirokazu\0"
+            VALUE "LegalTrademarks", "(C) 2000 INOUE. Hirokazu\0"
+            VALUE "OriginalFilename", "DDisk.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "論理ディスク アクセスツール Logical Disk Access Tool\0"
+            VALUE "ProductVersion", "0, 5, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DDISK_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 413
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 288
+    END
+
+    IDD_DIALOG_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 240
+    END
+
+    IDD_DIALOG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 200
+    END
+
+    IDD_DIALOG_INST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 200
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_TITLE        BITMAP  DISCARDABLE     "res\\TitlePic.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "DDisk"
+    IDS_APPNAME             "論理ディスク アクセスツール (Logical Disk Access Tool)"
+    IDS_ERR_NOFILESEL       "データファイル名が指定されていません\nNo File Name Specified"
+    IDS_ERR_BINEXEC         "バイナリー エディターが実行できません\nCan't execute binary editor"
+    IDS_ERR_NOBINEDIT       "バイナリー エディターが設定されていません\nNo binary editor configured"
+    IDS_ERR_FILECLOSE       "データファイルを閉じるのに失敗しました\nError on Data file close"
+    IDS_ERR_DRIVEWRITE      "論理ディスク 書き込み失敗\nError on Logical Disk write"
+    IDS_ERR_FILEACCESS      "データファイルの読み込み / 書き込み 許可が得られません\nError on Data File access"
+    IDS_ERR_FILEEOF         "データファイルの終わりに達しました\nError occured on End of File (EOF)"
+    IDS_ERR_FILEOTHER       "データファイルの操作でエラーが発生しました\nError on Data File manupiration (other error)"
+    IDS_ERR_FILEOPENPATH    "データファイルを開けません (不正なファイル名)\nError on Data File open (Bad file name)"
+    IDS_ERR_FILEOPEN        "データファイルが開けません\nError on Data File open (other error)"
+    IDS_ERR_DPBREAD         "DPB 読み込み失敗\nError on read DPB"
+    IDS_ERR_VWIN32          "Windows95/98 仮想デバイス (VWIN32) 使用不可\nError on use virtual device (VWIN32) (Windows 95/98)"
+    IDS_ERR_DRIVEREAD       "論理ディスク 読み込み失敗\nError on Logical Disk read"
+    IDS_ERR_FILEFULL        "データファイルの書き込みができません（ディスク領域不足）\nError on Data File write (Disk Full)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERR_FILESHORT       "データファイルが書き込み予定サイズより小さいです。 書き込みますか ?\nWarning : Data File size is shorter than Write size. Write anyway ?"
+    IDS_ERR_PARAM           "起動パラメーター (builtin parameters)\n\ninst : install\ndelete : uninstall"
+    IDS_WARNING_BADWIN      "このバージョンのWindowsでは動作しないと思われます。\nThis program does not work on current Windows"
+    IDS_Q_UNINST            "論理ディスク アクセスツールをアンインストールしますか ?\nUninstall Logical Disk Access Tool ?"
+    IDS_END_UNINST          "アンインストールが終了しました。\nプログラムファイルなどは手動で削除してください\n\nUninstallation success\nProgram file must be removed by yourself"
+    IDS_ERR_LOCK            "ドライブ操作権限（ロック）の取得に失敗しました\nError to obtain drive lock"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\DDisk.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
