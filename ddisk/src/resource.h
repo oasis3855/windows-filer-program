@@ -4,6 +4,7 @@
 //
 #define IDC_BTN_ABOUT                   3
 #define IDC_BUTTON_HELP                 3
+#define IDC_BTN_MKUNINST                4
 #define IDD_DDISK_DIALOG                102
 #define IDR_MAINFRAME                   128
 #define IDD_DIALOG_CONFIG               129
@@ -66,6 +67,15 @@
 #define IDS_Q_UNINST                    57363
 #define IDS_END_UNINST                  57364
 #define IDS_ERR_LOCK                    57365
+#define IDS_ASK_WRITE_TO                57366
+#define IDS_MES_NOTPOS_30LINE           57367
+#define AFX_STR_LINK_STARTUP            57368
+#define AFX_STR_LINK_PROG               57369
+#define STR_REGKEY_STARTUP              57370
+#define AFX_STR_LINK_UNINST             57371
+#define AFX_STR_UNINST_CPLNAME          57372
+#define AFX_STR_USERDAT_1               57373
+#define AFX_STR_USERDAT_2               57374
 
 // Next default values for new objects
 // 

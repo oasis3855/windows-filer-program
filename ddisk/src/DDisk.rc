@@ -79,7 +79,7 @@ STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE |
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "論理ディスク アクセスツール (Logical Disk Access Tool)  - DDisk -"
 
-FONT 9, "ＭＳ ゴシック"
+FONT 9, "ＭＳ ゴシック", 0, 0, 0x1
 BEGIN
     COMBOBOX        IDC_COMBO_DISK,16,40,60,80,CBS_DROPDOWNLIST | 
                     CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -124,12 +124,12 @@ BEGIN
                     SS_CENTERIMAGE
 END
 
-IDD_DIALOG_CONFIG DIALOGEX 0, 0, 303, 247
+IDD_DIALOG_CONFIG DIALOGEX 0, 0, 303, 269
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION 
 "論理ディスク アクセスツール 機能設定 (Logical Disk Access Tool Configuration)"
 
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
     CONTROL         "INT21H Func 440DH (Windows95)",IDC_RADIO_FUNC,"Button",
                     BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP | WS_TABSTOP,
@@ -145,17 +145,6 @@ BEGIN
                     120,276,16
     CONTROL         "バイナリ・テキスト形式で表示 (View by Binary and Text mix)",
                     IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,12,136,276,16
-    PUSHBUTTON      "About",IDC_BTN_ABOUT,140,228,50,14
-    DEFPUSHBUTTON   "OK",IDOK,192,228,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,244,228,50,14
-    GROUPBOX        "使用ファンクション (Active Function)",IDC_STATIC,4,24,
-                    292,80
-    GROUPBOX        "データ表示形式 (Data Preview Format)",IDC_STATIC,4,108,
-                    292,48
-    LTEXT           "Windows xxx Version xx.xxxx.xx-x",IDC_TEXT_WINVER,8,4,
-                    288,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
-    GROUPBOX        "バイナリー エディターの指定 (Binary Editor)",IDC_STATIC,
-                    4,160,292,36
     EDITTEXT        IDC_EDIT_EDITOR,8,172,224,16,ES_AUTOHSCROLL | 
                     ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
     PUSHBUTTON      "参照 (Browse)",IDC_BTN_BROWSE,232,172,58,16
@@ -165,6 +154,20 @@ BEGIN
     CONTROL         "ｾｸﾀｰ限界、ﾌｧｲﾙ限界を無視する (Ignore Sector limit and Data file limit)",
                     IDC_CHECK_IGNOREERR,"Button",BS_AUTOCHECKBOX | 
                     WS_DISABLED | WS_TABSTOP,12,212,280,12
+    PUSHBUTTON      "ｱﾝｲﾝｽﾄｰﾙ作成",IDC_BTN_MKUNINST,5,230,60,14
+    PUSHBUTTON      "About",IDC_BTN_ABOUT,140,250,50,14
+    DEFPUSHBUTTON   "OK",IDOK,192,250,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,244,250,50,14
+    GROUPBOX        "使用ファンクション (Active Function)",IDC_STATIC,4,24,
+                    292,80
+    GROUPBOX        "データ表示形式 (Data Preview Format)",IDC_STATIC,4,108,
+                    292,48
+    LTEXT           "Windows xxx Version xx.xxxx.xx-x",IDC_TEXT_WINVER,8,4,
+                    288,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "バイナリー エディターの指定 (Binary Editor)",IDC_STATIC,
+                    4,160,292,36
+    LTEXT           "スタートメニューにアンインストール用のショートカットを作成します",
+                    IDC_STATIC,70,230,220,15,SS_CENTERIMAGE
 END
 
 IDD_DIALOG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 207
@@ -173,7 +176,7 @@ CAPTION "バージョン情報 (Version Info)"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,220,188,50,14
-    LTEXT           "論理ディスク アクセスツール (Logical Disk Access Tool)\n  for Windows 98\n\nVersion 0.5\n\n(C) 2000 INOUE. Hirokazu\ninoue-h@iname.com",
+    LTEXT           "論理ディスク アクセスツール (Logical Disk Access Tool)\n  for Windows 95/98/Me    Version 0.6\n\n(C) 2000-2002 INOUE. Hirokazu\nhttp://www.ne.jp/asahi/oasis/inoue-h/\r\nhttp://inoue-h.connect.to/",
                     IDC_STATIC,72,8,192,64
     CONTROL         135,IDC_STATIC,"Static",SS_BITMAP,4,4,62,200
     LTEXT           "使用許諾条件 (End User Licence Agreement)\n\nこのプログラムを使用することにより、ディスクを破壊する可能性があります。\nこのプログラムの欠陥によりディスク等が破壊された場合でも、一切の保証はいたしません。\nこのプログラムはフリーウエアーです。",
@@ -185,7 +188,7 @@ END
 IDD_DIALOG_INST DIALOGEX 0, 0, 302, 207
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "論理ディスク アクセスツール (Logical Disk Access Tool)"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,172,192,62,14
     PUSHBUTTON      "ｷｬﾝｾﾙ (Cancel)",IDCANCEL,236,192,62,14
@@ -222,8 +225,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,5,0,0
- PRODUCTVERSION 0,5,0,1
+ FILEVERSION 0,6,0,0
+ PRODUCTVERSION 0,6,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -238,17 +241,17 @@ BEGIN
     BEGIN
         BLOCK "041104b0"
         BEGIN
-            VALUE "Comments", "ディスクの特定セクターを保存、または書き込みするためのツール\0"
-            VALUE "CompanyName", "inoue-h\0"
-            VALUE "FileDescription", "論理ディスク アクセスツール Logical Disk Access Tool\0"
-            VALUE "FileVersion", "0, 5, 0, 0\0"
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "(C) INOUE. Hirokazu\0"
+            VALUE "FileDescription", "Logical Disk Access Tool\0"
+            VALUE "FileVersion", "0, 6, 0, 0\0"
             VALUE "InternalName", "DDisk\0"
             VALUE "LegalCopyright", "Copyright (C) 2000 INOUE. Hirokazu\0"
             VALUE "LegalTrademarks", "(C) 2000 INOUE. Hirokazu\0"
             VALUE "OriginalFilename", "DDisk.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "論理ディスク アクセスツール Logical Disk Access Tool\0"
-            VALUE "ProductVersion", "0, 5, 0, 1\0"
+            VALUE "ProductVersion", "0, 6, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END
@@ -282,7 +285,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 296
         TOPMARGIN, 7
-        BOTTOMMARGIN, 240
+        BOTTOMMARGIN, 262
     END
 
     IDD_DIALOG_ABOUT, DIALOG
@@ -344,9 +347,261 @@ BEGIN
     IDS_Q_UNINST            "論理ディスク アクセスツールをアンインストールしますか ?\nUninstall Logical Disk Access Tool ?"
     IDS_END_UNINST          "アンインストールが終了しました。\nプログラムファイルなどは手動で削除してください\n\nUninstallation success\nProgram file must be removed by yourself"
     IDS_ERR_LOCK            "ドライブ操作権限（ロック）の取得に失敗しました\nError to obtain drive lock"
+    IDS_ASK_WRITE_TO        "論理ディスク %d(%c:) の セクタ %d に書き込みますか ?\n\nWrite to Logical Disk %d(%c:), on Sector %d ?\n\n書き込みサイズ Size : %d セクタ(Sector) (%d Bytes)\n"
+    IDS_MES_NOTPOS_30LINE   "\n\nプレビューウインドウでは 30 kbytes以上のプレビューはできません\r\n"
+    AFX_STR_LINK_STARTUP    "\\DDisk自動実行.LNK"
+    AFX_STR_LINK_PROG       "\\DDisk 論理ディスクアクセスツール.LNK"
+    STR_REGKEY_STARTUP      "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders"
+    AFX_STR_LINK_UNINST     "\\DDiskアンインストール.LNK"
+    AFX_STR_UNINST_CPLNAME  "論理ディスクアクセスツール"
+    AFX_STR_USERDAT_1       "Software\\hi soft\\DDisk"
+    AFX_STR_USERDAT_2       "Software\\hi soft"
 END
 
 #endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (ｱﾒﾘｶ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DDISK_DIALOG DIALOGEX 0, 0, 379, 276
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Logical Disk Access Tool  - DDisk -"
+FONT 8, "FixedSys"
+BEGIN
+    COMBOBOX        IDC_COMBO_DISK,15,30,49,80,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SECT,69,30,46,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_SIZE,134,30,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "Read DPB",IDC_BTN_DPB,200,10,65,15
+    PUSHBUTTON      "Read (View)",IDC_BTN_READ,200,30,65,15
+    EDITTEXT        IDC_EDIT_FNAME,13,67,178,16,ES_AUTOHSCROLL | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "Browse File",IDC_BTN_BROWSE,16,86,95,15
+    PUSHBUTTON      "Edit File",IDC_BTN_EDIT,111,86,80,15
+    PUSHBUTTON      "Save to File",IDC_BTN_SAVE,201,66,65,15
+    PUSHBUTTON      "Write",IDC_BTN_WRITE,201,86,65,15
+    CONTROL         "Normal Data",IDC_RADIO_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,100,110,64,12
+    CONTROL         "FAT",IDC_RADIO_TYPE2,"Button",BS_AUTORADIOBUTTON,165,
+                    110,64,12
+    CONTROL         "Root Dir",IDC_RADIO_TYPE3,"Button",BS_AUTORADIOBUTTON,
+                    230,110,64,12
+    CONTROL         "Other Data",IDC_RADIO_TYPE4,"Button",BS_AUTORADIOBUTTON,
+                    295,110,64,12
+    EDITTEXT        IDC_EDIT_PREVIEW,5,135,371,116,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | NOT WS_BORDER | 
+                    WS_VSCROLL | WS_HSCROLL,WS_EX_STATICEDGE
+    PUSHBUTTON      "Config",IDC_BTN_CONFIG,125,255,80,16
+    PUSHBUTTON      "Help",IDC_BTN_HELP,210,255,80,16
+    DEFPUSHBUTTON   "Quit",IDOK,295,255,80,16
+    LTEXT           "Drive",IDC_STATIC,15,11,49,14
+    LTEXT           "Sector",IDC_STATIC,69,10,45,15
+    LTEXT           "Number of Sector",IDC_STATIC,134,10,60,15
+    GROUPBOX        "Logical Disk",IDC_STATIC,5,0,371,50
+    GROUPBOX        "Data File",IDC_STATIC,5,55,371,75
+    LTEXT           "[LogicalDisk] -> [File]",IDC_STATIC,271,66,96,15,
+                    SS_CENTERIMAGE
+    LTEXT           "[File] -> [LogicalDisk]",IDC_STATIC,271,86,96,15,
+                    SS_CENTERIMAGE
+    LTEXT           "[LogicalDisk] -> [View]",IDC_STATIC,269,30,96,15,
+                    SS_CENTERIMAGE
+    LTEXT           "[LogicalDIsk] -> [View]",IDC_STATIC,269,10,96,15,
+                    SS_CENTERIMAGE
+    SCROLLBAR       IDC_SCR_SIZE,179,30,12,12,SBS_VERT
+    SCROLLBAR       IDC_SCR_SECT,114,30,12,12,SBS_VERT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,10,105,360,20
+    LTEXT           "Write Mode",IDC_STATIC,20,110,70,12,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 207
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Version Info"
+FONT 9, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,220,188,50,14
+    LTEXT           "Logical Disk Access Tool\n  for Windows 95/98/Me    Version 0.6\n\n(C) 2000-2002 INOUE. Hirokazu\nhttp://www.ne.jp/asahi/oasis/inoue-h/\r\nhttp://inoue-h.connect.to/",
+                    IDC_STATIC,72,8,192,64
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP,4,4,62,200
+    LTEXT           "End User Licence Agreement\n\nThis program is free ware .\r\nThere is no guarantee of this program functioning correctly, and author is not responsible to every result of this program. ",
+                    IDC_STATIC,72,84,196,64
+    LTEXT           "Tested on (IA32-AT compatible machine)\nWindows98 v4.10.1998, 98SE v4.10.2222, 95 v4.10.950\nFAT12 (Floppy), FAT16, FAT32 (Under 8GBytes)",
+                    IDC_STATIC,72,152,196,28
+END
+
+IDD_DIALOG_CONFIG DIALOGEX 0, 0, 303, 269
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Logical Disk Access Tool Configuration"
+FONT 9, "Arial"
+BEGIN
+    CONTROL         "INT21H Func 440DH (Windows95)",IDC_RADIO_FUNC,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP | WS_TABSTOP,
+                    12,36,276,16
+    CONTROL         "INT25H, 26H (Windows95)",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,12,52,276,16
+    CONTROL         "INT21H Func 7305H (Windows95 OSR2, Windows98)",
+                    IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,12,68,276,16
+    CONTROL         "Windows NT, Windows2000",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,12,84,276,16
+    CONTROL         "View by Text",IDC_RADIO_VIEW,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,12,120,276,16
+    CONTROL         "View by Binary and Text mix",IDC_RADIO6,"Button",
+                    BS_AUTORADIOBUTTON,12,136,276,16
+    EDITTEXT        IDC_EDIT_EDITOR,8,172,224,16,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "Browse",IDC_BTN_BROWSE,232,172,58,16
+    CONTROL         "Detail info to preview area",IDC_CHECK_DETAILINFO,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,
+                    200,280,12
+    CONTROL         "Ignore Sector limit and Data file limit",
+                    IDC_CHECK_IGNOREERR,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,12,212,280,12
+    PUSHBUTTON      "Make Uninstall",IDC_BTN_MKUNINST,5,230,60,14
+    PUSHBUTTON      "About",IDC_BTN_ABOUT,140,250,50,14
+    DEFPUSHBUTTON   "OK",IDOK,192,250,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,244,250,50,14
+    GROUPBOX        "Active Function",IDC_STATIC,4,24,292,80
+    GROUPBOX        "Data Preview Format",IDC_STATIC,4,108,292,48
+    LTEXT           "Windows xxx Version xx.xxxx.xx-x",IDC_TEXT_WINVER,8,4,
+                    288,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "Binary Editor",IDC_STATIC,4,160,292,36
+    LTEXT           "Make uninstall shortcut on start menu",IDC_STATIC,70,
+                    230,220,15,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_INST DIALOGEX 0, 0, 302, 207
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Logical Disk Access Tool Install"
+FONT 9, "Arial", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,172,192,62,14
+    PUSHBUTTON      "Cancel",IDCANCEL,236,192,62,14
+    CTEXT           "Logical Disk Access Tool Installer",IDC_STATIC,4,8,292,
+                    12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "Windows version and Interrupt function",IDC_STATIC,4,24,
+                    292,100
+    LTEXT           "Windows xx version xx.xx.xxxx.ss",IDC_STR_WINVER,12,40,
+                    276,16,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CONTROL         "INT21H Func 440DH (Windows95)",IDC_RADIO_FUNC,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP | WS_TABSTOP,
+                    12,56,276,16
+    CONTROL         "INT25H, 26H (Windows95)",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,12,72,276,16
+    CONTROL         "INT21H Func 7305H (Windows95 OSR2, Windows98)",
+                    IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,12,88,276,16
+    CONTROL         "Windows NT, Windows2000",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,12,104,276,16
+    CONTROL         "Support Uninstall",IDC_CHECK_UNINST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,128,280,16
+    CONTROL         "Shortcut on Start menu",IDC_CHECK_START,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,144,280,16
+    PUSHBUTTON      "Help",IDC_BUTTON_HELP,108,192,62,14
+    LTEXT           "",IDC_STR_WARNING,8,164,288,24
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DDISK_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 372
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_DIALOG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 200
+    END
+
+    IDD_DIALOG_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 262
+    END
+
+    IDD_DIALOG_INST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 200
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "DDisk"
+    IDS_APPNAME             "Logical Disk Access Tool"
+    IDS_ERR_NOFILESEL       "No File Name Specified"
+    IDS_ERR_BINEXEC         "Can't execute binary editor"
+    IDS_ERR_NOBINEDIT       "No binary editor configured"
+    IDS_ERR_FILECLOSE       "Error on Data file close"
+    IDS_ERR_DRIVEWRITE      "Error on Logical Disk write"
+    IDS_ERR_FILEACCESS      "Error on Data File access"
+    IDS_ERR_FILEEOF         "Error occured on End of File (EOF)"
+    IDS_ERR_FILEOTHER       "Error on Data File manupiration (other error)"
+    IDS_ERR_FILEOPENPATH    "Error on Data File open (Bad file name)"
+    IDS_ERR_FILEOPEN        "Error on Data File open (other error)"
+    IDS_ERR_DPBREAD         "Error on read DPB"
+    IDS_ERR_VWIN32          "Error on use virtual device (VWIN32) (Windows 95/98)"
+    IDS_ERR_DRIVEREAD       "Error on Logical Disk read"
+    IDS_ERR_FILEFULL        "Error on Data File write (Disk Full)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERR_FILESHORT       "Warning : Data File size is shorter than Write size. Write anyway ?"
+    IDS_ERR_PARAM           "parameter error"
+    IDS_WARNING_BADWIN      "This program does not work on current Windows"
+    IDS_Q_UNINST            "Uninstall Logical Disk Access Tool ?"
+    IDS_END_UNINST          "Uninstallation success\nProgram file must be removed by yourself"
+    IDS_ERR_LOCK            "Error to obtain drive lock"
+    IDS_ASK_WRITE_TO        "Write to Disk %d(%c:) Sector %d ?\n\nWrite to Logical Disk %d(%c:), on Sector %d ?\n\nSize : %d (Sector) (%d Bytes)\n"
+    IDS_MES_NOTPOS_30LINE   "\n\npreview is limited at 30 kbytes\r\n"
+    AFX_STR_LINK_STARTUP    "\\DDisk autoexec.LNK"
+    AFX_STR_LINK_PROG       "\\Logical Disk Access Tool.LNK"
+    STR_REGKEY_STARTUP      "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders"
+    AFX_STR_LINK_UNINST     "\\DDisk Uninstall.LNK"
+    AFX_STR_UNINST_CPLNAME  "Logical Disk Access Tool"
+    AFX_STR_USERDAT_1       "Software\\hi soft\\DDisk"
+    AFX_STR_USERDAT_2       "Software\\hi soft"
+END
+
+#endif    // 英語 (ｱﾒﾘｶ) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

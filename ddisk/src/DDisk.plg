@@ -3,9 +3,59 @@
 <pre>
 <h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
 <h3>
---------------------構成: DDisk - Win32 Debug--------------------
+--------------------構成: DDisk - Win32 Release--------------------
 </h3>
 <h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+Creating command line "rc.exe /l 0x411 /fo"Release/DDisk.res" /d "NDEBUG" /d "_AFXDLL" "G:\mnt\data-1\DATA\SRC\VC\DDisk\DDisk.rc"" 
+一時ﾌｧｲﾙ "f:\temp\winnt\inoue-h\RSP23.tmp" を作成し、次の内容を記録します
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/DDisk.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\AboutDlg.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\CheckWinVer.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\DDisk.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\DDiskConfig.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\DDiskDlg.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\DiskCore.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\DlgInstall.cpp"
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\InstFunc.cpp"
+]
+Creating command line "cl.exe @"f:\temp\winnt\inoue-h\RSP23.tmp"" 
+一時ﾌｧｲﾙ "f:\temp\winnt\inoue-h\RSP24.tmp" を作成し、次の内容を記録します
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/DDisk.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"G:\mnt\data-1\DATA\SRC\VC\DDisk\StdAfx.cpp"
+]
+Creating command line "cl.exe @"f:\temp\winnt\inoue-h\RSP24.tmp"" 
+一時ﾌｧｲﾙ "f:\temp\winnt\inoue-h\RSP25.tmp" を作成し、次の内容を記録します
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/DDisk.pdb" /machine:I386 /out:"Release/DDisk.exe" 
+".\Release\AboutDlg.obj"
+".\Release\CheckWinVer.obj"
+".\Release\DDisk.obj"
+".\Release\DDiskConfig.obj"
+".\Release\DDiskDlg.obj"
+".\Release\DiskCore.obj"
+".\Release\DlgInstall.obj"
+".\Release\InstFunc.obj"
+".\Release\StdAfx.obj"
+".\Release\DDisk.res"
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @"f:\temp\winnt\inoue-h\RSP25.tmp"" の作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ﾘｿｰｽをｺﾝﾊﾟｲﾙ中...
+ｺﾝﾊﾟｲﾙ中...
+StdAfx.cpp
+ｺﾝﾊﾟｲﾙ中...
+AboutDlg.cpp
+CheckWinVer.cpp
+DDisk.cpp
+DDiskConfig.cpp
+DDiskDlg.cpp
+DiskCore.cpp
+DlgInstall.cpp
+InstFunc.cpp
+ｺｰﾄﾞを生成中...
+ﾘﾝｸ中...
 
 
 

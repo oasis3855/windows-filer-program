@@ -94,7 +94,15 @@ SOURCE=.\AboutDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CheckWinVer.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DDisk.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\HLP\DDisk.hpj
 # End Source File
 # Begin Source File
 
@@ -119,7 +127,7 @@ SOURCE=.\DlgInstall.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ShellLink.cpp
+SOURCE=.\InstFunc.cpp
 # End Source File
 # Begin Source File
 
@@ -133,6 +141,10 @@ SOURCE=.\StdAfx.cpp
 # Begin Source File
 
 SOURCE=.\AboutDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CheckWinVer.h
 # End Source File
 # Begin Source File
 
@@ -156,11 +168,11 @@ SOURCE=.\DlgInstall.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Resource.h
+SOURCE=.\InstFunc.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ShellLink.h
+SOURCE=.\Resource.h
 # End Source File
 # Begin Source File
 

@@ -1,5 +1,6 @@
-// DDiskDlg.cpp : インプリメンテーション ファイル
-//
+// ************************************************************
+// メイン・ダイアログ CDDiskDlg
+// ************************************************************
 
 #include "stdafx.h"
 #include "DDisk.h"
@@ -60,10 +61,84 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CDDiskDlg メッセージ ハンドラ
 
+// もしダイアログボックスに最小化ボタンを追加するならば、アイコンを描画する
+// コードを以下に記述する必要があります。MFC アプリケーションは document/view
+// モデルを使っているので、この処理はフレームワークにより自動的に処理されます。
+
+void CDDiskDlg::OnPaint() 
+{
+	if (IsIconic())
+	{
+		CPaintDC dc(this); // 描画用のデバイス コンテキスト
+
+		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
+
+		// クライアントの矩形領域内の中央
+		int cxIcon = GetSystemMetrics(SM_CXICON);
+		int cyIcon = GetSystemMetrics(SM_CYICON);
+		CRect rect;
+		GetClientRect(&rect);
+		int x = (rect.Width() - cxIcon + 1) / 2;
+		int y = (rect.Height() - cyIcon + 1) / 2;
+
+		// アイコンを描画します。
+		dc.DrawIcon(x, y, m_hIcon);
+	}
+	else
+	{
+		CDialog::OnPaint();
+	}
+}
+
+// システムは、ユーザーが最小化ウィンドウをドラッグしている間、
+// カーソルを表示するためにここを呼び出します。
+HCURSOR CDDiskDlg::OnQueryDragIcon()
+{
+	return (HCURSOR) m_hIcon;
+}
+
+// ************************************************************
+// ダイアログ初期化時の初期値設定
+// ************************************************************
+BOOL CDDiskDlg::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// このダイアログ用のアイコンを設定します。フレームワークはアプリケーションのメイン
+	// ウィンドウがダイアログでない時は自動的に設定しません。
+	SetIcon(m_hIcon, TRUE);			// 大きいアイコンを設定
+	SetIcon(m_hIcon, FALSE);		// 小さいアイコンを設定
+	
+	// TODO: 特別な初期化を行う時はこの場所に追加してください。
+	// ドライブのコンボボックスの初期設定
+	int i;
+	
+	for(i=1;i<=26;i++)
+	{	// Z までのドライブを設定
+		sprintf(m_buf, "%2d (%c:)", i, 0x40+i);
+		m_cmb_disk.AddString(m_buf);
+	}
+	m_cmb_disk.SetCurSel(0); // 初期設定は A:
+
+	// セクタを0とする
+	SetDlgItemInt(IDC_EDIT_SECT, 0);
+
+	// セクタサイズを1とする
+	SetDlgItemInt(IDC_EDIT_SIZE, 1);
+
+	// 書き込みﾓｰﾄﾞをノーマルデータとする
+	CheckRadioButton(IDC_RADIO_TYPE, IDC_RADIO_TYPE4, IDC_RADIO_TYPE);
+
+	
+	return TRUE;  // TRUE を返すとコントロールに設定したフォーカスは失われません。
+}
+
+// ************************************************************
 // セクターまたはセクター数のスクロールバーが押された場合の処理
 //
 // CScrollBar は、何にもしてくれないので、CWndがスクロールバーが押されたことを検知して
 // 処理をしないといけない。
+// ************************************************************
 void CDDiskDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
 {
 	// TODO: この位置にメッセージ ハンドラ用のコードを追加するかまたはデフォルトの処理を呼び出してください
@@ -103,78 +178,10 @@ void CDDiskDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	CDialog::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
-BOOL CDDiskDlg::OnInitDialog()
-{
-	CDialog::OnInitDialog();
-
-	// このダイアログ用のアイコンを設定します。フレームワークはアプリケーションのメイン
-	// ウィンドウがダイアログでない時は自動的に設定しません。
-	SetIcon(m_hIcon, TRUE);			// 大きいアイコンを設定
-	SetIcon(m_hIcon, FALSE);		// 小さいアイコンを設定
-	
-	// TODO: 特別な初期化を行う時はこの場所に追加してください。
-	// ドライブのコンボボックスの初期設定
-	int i;
-	
-	for(i=1;i<=26;i++)
-	{	// Z までのドライブを設定
-		sprintf(m_buf, "%2d (%c:)", i, 0x40+i);
-		m_cmb_disk.AddString(m_buf);
-	}
-	m_cmb_disk.SetCurSel(0); // 初期設定は A:
-
-	// セクタを0とする
-	SetDlgItemInt(IDC_EDIT_SECT, 0);
-
-	// セクタサイズを1とする
-	SetDlgItemInt(IDC_EDIT_SIZE, 1);
-
-	// 書き込みﾓｰﾄﾞをノーマルデータとする
-	CheckRadioButton(IDC_RADIO_TYPE, IDC_RADIO_TYPE4, IDC_RADIO_TYPE);
-
-	
-	return TRUE;  // TRUE を返すとコントロールに設定したフォーカスは失われません。
-}
-
-// もしダイアログボックスに最小化ボタンを追加するならば、アイコンを描画する
-// コードを以下に記述する必要があります。MFC アプリケーションは document/view
-// モデルを使っているので、この処理はフレームワークにより自動的に処理されます。
-
-void CDDiskDlg::OnPaint() 
-{
-	if (IsIconic())
-	{
-		CPaintDC dc(this); // 描画用のデバイス コンテキスト
-
-		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
-
-		// クライアントの矩形領域内の中央
-		int cxIcon = GetSystemMetrics(SM_CXICON);
-		int cyIcon = GetSystemMetrics(SM_CYICON);
-		CRect rect;
-		GetClientRect(&rect);
-		int x = (rect.Width() - cxIcon + 1) / 2;
-		int y = (rect.Height() - cyIcon + 1) / 2;
-
-		// アイコンを描画します。
-		dc.DrawIcon(x, y, m_hIcon);
-	}
-	else
-	{
-		CDialog::OnPaint();
-	}
-}
-
-// システムは、ユーザーが最小化ウィンドウをドラッグしている間、
-// カーソルを表示するためにここを呼び出します。
-HCURSOR CDDiskDlg::OnQueryDragIcon()
-{
-	return (HCURSOR) m_hIcon;
-}
-
-
-// 「表示」ボタンが押された場合
+// ************************************************************
+// 「表示(Read)」ボタンが押された場合
 // 論理ディスクを読み込み、プレビューエリアに表示する
+// ************************************************************
 void CDDiskDlg::OnBtnRead() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -283,7 +290,8 @@ void CDDiskDlg::OnBtnRead()
 
 		if(str.GetLength() > 31000)
 		{
-			str += "\n\nプレビューウインドウでは 30 kbytes以上のプレビューはできません\r\n";
+			tmpStr2.LoadString(IDS_MES_NOTPOS_30LINE);
+			str += tmpStr2;
 			break;
 		}
 	}	
@@ -295,8 +303,10 @@ void CDDiskDlg::OnBtnRead()
 }
 
 
+// ************************************************************
 // 「DPB」ボタンが押されたとき
 // DPB を読み込んでプレビューエリアに表示する
+// ************************************************************
 void CDDiskDlg::OnBtnDpb() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -378,7 +388,9 @@ void CDDiskDlg::OnBtnDpb()
 
 }
 
+// ************************************************************
 // 「設定」ダイアログを表示する
+// ************************************************************
 void CDDiskDlg::OnBtnConfig() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -447,6 +459,10 @@ void CDDiskDlg::OnBtnConfig()
 	}
 }
 
+// ************************************************************
+// 読み込みセクター数の変更を監視し
+// 0 以下の設定を 1 に書き換える
+// ************************************************************
 void CDDiskDlg::OnKillfocusEditSize() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -454,6 +470,10 @@ void CDDiskDlg::OnKillfocusEditSize()
 		SetDlgItemInt(IDC_EDIT_SIZE, 1);
 }
 
+// ************************************************************
+// ファイル・パスの設定ダイアログを表示する
+// (読み込み・書き出しファイル名の設定）
+// ************************************************************
 void CDDiskDlg::OnBtnBrowse() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -464,8 +484,10 @@ void CDDiskDlg::OnBtnBrowse()
 		SetDlgItemText(IDC_EDIT_FNAME, dlg.GetPathName());
 }
 
+// ************************************************************
 // 「保存」ボタンを押したとき
 // 論理ディスクの内容をデータファイルに書き込む
+// ************************************************************
 void CDDiskDlg::OnBtnSave() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -582,8 +604,10 @@ void CDDiskDlg::OnBtnSave()
 	return;
 }
 
+// ************************************************************
 // 「書き込み」ボタンを押したとき
 // データファイルの内容を論理ディスクに書き込む
+// ************************************************************
 void CDDiskDlg::OnBtnWrite() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
@@ -652,8 +676,8 @@ void CDDiskDlg::OnBtnWrite()
 	}
 
 	// この文章では m_buf があふれるので、 m_mainbuf を使用する
-	sprintf(m_mainbuf, "論理ディスク %d(%c:) の セクタ %d に書き込みますか ?\n\nWrite to Logical Disk %d(%c:),"
-			"on Sector %d ?\n\n書き込みサイズ Size : %d セクタ(Sector) (%d Bytes)\n",
+	tmpStr2.LoadString(IDS_ASK_WRITE_TO);
+	sprintf(m_mainbuf, tmpStr2,
 			n_drive, 0x40+n_drive, n_sect, n_drive, 0x40+n_drive, n_sect,
 			n_size, n_size * dpb.cbSec);
 	tmpStr.LoadString(IDS_APPNAME);
@@ -759,8 +783,10 @@ void CDDiskDlg::OnBtnWrite()
 	
 }
 
+// ************************************************************
 // 「編集」ボタンを押したとき
 // バイナリー エディターを起動する
+// ************************************************************
 #include <process.h>
 void CDDiskDlg::OnBtnEdit() 
 {
@@ -799,13 +825,18 @@ void CDDiskDlg::OnBtnEdit()
 	return;
 }
 
-
+// ************************************************************
+// ヘルプの表示
+// ************************************************************
 void CDDiskDlg::OnBtnHelp() 
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
 	theApp->WinHelp(0);		// DDisk.hm の値
 }
 
+// ************************************************************
+// ヘルプの表示 (F1 キー対応)
+// ************************************************************
 BOOL CDDiskDlg::OnHelpInfo(HELPINFO* pHelpInfo) 
 {
 	// TODO: この位置にメッセージ ハンドラ用のコードを追加するかまたはデフォルトの処理を呼び出してください
@@ -813,3 +844,6 @@ BOOL CDDiskDlg::OnHelpInfo(HELPINFO* pHelpInfo)
 	theApp->WinHelp(0);		// DDisk.hm の値
 	return 0;
 }
+
+// ************************************************************
+// EOF

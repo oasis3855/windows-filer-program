@@ -5,7 +5,7 @@
 #include "DDisk.h"
 #include "DDiskDlg.h"
 #include "DlgInstall.h"
-#include "ShellLink.h"
+#include "InstFunc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -65,15 +65,10 @@ BOOL CDDiskApp::InitInstance()
 	CString tmpStr, tmpStr2;	// ストリング リソース 読み込み用
 
 	// コマンドラインの解析
-	if(!strcmpi(m_lpCmdLine, "delete"))
+	if(!strcmpi(m_lpCmdLine, "/delete"))
 	{	// アンインストール
 		UninstallSeq();
 		return FALSE;
-	}
-	else if(!strcmpi(m_lpCmdLine, "inst"))
-	{	// インストール
-		if(!InstallSeq()) return FALSE;
-		// インストールしたあとは、プログラムダイアログを表示する
 	}
 	else if(m_lpCmdLine[0] != NULL)
 	{	// 無効なパラメーターが指定された場合、パラメーターリストを表示する
@@ -82,13 +77,9 @@ BOOL CDDiskApp::InitInstance()
 		::MessageBox(NULL, tmpStr, tmpStr2, MB_OK|MB_ICONINFORMATION|MB_APPLMODAL);
 		return FALSE;
 	}
-	else
-	{	// 何もパラメーターがないときで、まだインストールされていない時
-		if(!GetProfileInt("Global","inst",0))
-		{	// インストールダイアログの表示とインストール処理
-			if(!InstallSeq())return FALSE;
-		}
-	}
+
+	if(!::ChkHkcuInstReg())
+		if(!InstallSeq())return FALSE;
 
 	RegReadAll();
 
@@ -114,25 +105,33 @@ BOOL CDDiskApp::InitInstance()
 	return FALSE;
 }
 
+// ************************************************************
+// レジストリ情報の読み込み
+// ************************************************************
 void CDDiskApp::RegReadAll()
 {
-	m_inttype = GetProfileInt("Global","INT_type",2);
-	m_viewtype = GetProfileInt("Global","VIEW_type",0);
-	m_binedit = GetProfileString("Global","BIN_EDIT","");
+	m_inttype = GetProfileInt("Settings","INT_type",2);
+	m_viewtype = GetProfileInt("Settings","VIEW_type",0);
+	m_binedit = GetProfileString("Settings","BIN_EDIT","");
 }
 
+// ************************************************************
+// レジストリへ保存
+// ************************************************************
 void CDDiskApp::RegWriteAll()
 {
-	if(m_inttype != (int)GetProfileInt("Global","INT_type",2))
-		WriteProfileInt("Global","INT_type",m_inttype);
-	if(m_viewtype != (int)GetProfileInt("Global","VIEW_type",0))
-		WriteProfileInt("Global","VIEW_type",m_viewtype);
-	if(m_binedit != GetProfileString("Global","BIN_EDIT",""))
-		WriteProfileString("Global","BIN_EDIT",m_binedit);
+	if(m_inttype != (int)GetProfileInt("Settings","INT_type",2))
+		WriteProfileInt("Settings","INT_type",m_inttype);
+	if(m_viewtype != (int)GetProfileInt("Settings","VIEW_type",0))
+		WriteProfileInt("Settings","VIEW_type",m_viewtype);
+	if(m_binedit != GetProfileString("Settings","BIN_EDIT",""))
+		WriteProfileString("Settings","BIN_EDIT",m_binedit);
 }
 
 
+// ************************************************************
 // インストーラ
+// ************************************************************
 BOOL CDDiskApp::InstallSeq()
 {
 	CDlgInstall dlg;
@@ -201,8 +200,6 @@ BOOL CDDiskApp::InstallSeq()
 
 	if(dlg.DoModal() != IDOK) return FALSE;		// ｷｬﾝｾﾙボタンが押されたら 何もしない
 
-	WriteProfileInt("Global","inst",1);
-
 	// オプションの設定
 	m_inttype = dlg.m_func;
 	m_viewtype = 0;
@@ -210,53 +207,22 @@ BOOL CDDiskApp::InstallSeq()
 
 	RegWriteAll();	// レジストリに書き込む
 
-	char szProg[MAX_PATH];
-	char szLink[MAX_PATH];
-	CString tmpStr;
-
+	// インストールフラグの書き込み
+	::MkHkcuInstReg();
+	
 	// アンインストール情報について
-	if(dlg.m_uninst)
-	{	// アンインストールパスの書き込み
-		if(!::GetModuleFileName(NULL, szProg, MAX_PATH)) return FALSE;
-		strcat(szProg, " delete");
-		HKEY hCU;
-		DWORD dw;
-		// 全ユーザー共通設定領域に、アンインストール情報を書き込む
-		if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\DDisk",
-			0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
-			&hCU, &dw) == ERROR_SUCCESS)
-		{
-			RegSetValueEx( hCU, "UninstallString", 0, REG_SZ, (const unsigned char *)szProg, strlen(szProg));
-			tmpStr.LoadString(IDS_APPNAME);
-			strcpy(szProg, (LPCSTR)tmpStr);
-			RegSetValueEx( hCU, "DisplayName", 0, REG_SZ, (const unsigned char *)szProg, strlen(szProg));
-			RegCloseKey(hCU);
-		}
-	}
+	if(dlg.m_uninst) ::MkUninstMnu();
 
 	// スタートメニューに登録する処理
-	if(dlg.m_start)
-	{
-		::GetModuleFileName(NULL, szProg, MAX_PATH);
-		HKEY hCU;
-		DWORD lpType;
-		ULONG ulSize = MAX_PATH;
-		if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders",
-			0, KEY_QUERY_VALUE, &hCU) == ERROR_SUCCESS)
-		{
-			RegQueryValueEx( hCU, "Programs", NULL, &lpType, (unsigned char *)&szLink, &ulSize);
-			RegCloseKey(hCU);
-		}
-		strcat(szLink, "\\Logical Disk Access Tool.LNK");
-		::CreateShellLink(szProg, szLink, "DDisk", "");
-	}
-
+	if(dlg.m_start) ::MkProgramsMnu();
 
 	return TRUE;
 }
 
 
+// ************************************************************
 // アンインストーラ
+// ************************************************************
 void CDDiskApp::UninstallSeq()
 {
 	CString tmpStr, tmpStr2;	// ストリング リソース 読み込み用
@@ -266,35 +232,17 @@ void CDDiskApp::UninstallSeq()
 	if(::MessageBox(NULL, tmpStr2, tmpStr, MB_ICONQUESTION|MB_YESNO|MB_SYSTEMMODAL) != IDYES)
 		return;
 
-	HKEY hCU;
-	char szLink[MAX_PATH];
-	DWORD lpType;
-	ULONG ulSize = MAX_PATH;
-
 	// レジストリの設定情報を消去 現在のユーザー情報から削除する
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\hi soft",
-			0, KEY_QUERY_VALUE, &hCU) == ERROR_SUCCESS)
-	{
-		RegDeleteKey( hCU, "DDisk");
-		RegCloseKey(hCU);
-	}
-	// スタートメニューの設定アイコンを抹殺
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders",
-			0, KEY_QUERY_VALUE, &hCU) == ERROR_SUCCESS)
-	{
-		RegQueryValueEx( hCU, "Programs", NULL, &lpType, (unsigned char *)&szLink, &ulSize);
-		RegCloseKey(hCU);
-	}
-	strcat(szLink, "\\Logical Disk Access Tool.LNK");
-	::remove(szLink);
+	::RmUserReg();
 
-	// コントロールパネル用削除データの削除
-	if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall",
-			0, KEY_QUERY_VALUE, &hCU) == ERROR_SUCCESS)
-	{
-		RegDeleteKey( hCU, "DDisk");
-		RegCloseKey(hCU);
-	}
+	// スタートメニューの設定アイコンを抹殺
+	::RmProgramsMnu();
+
+	// アンインストールアイコンの削除
+	::RmUninstMnu();
+
+	// インストールフラグの削除
+	::RmHkcuInstReg();
 
 	// 情報の表示
 	tmpStr.LoadString(IDS_APPNAME);

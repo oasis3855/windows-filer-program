@@ -1,12 +1,10 @@
 ; This file is maintained by HCW. Do not modify this file directly.
 
 [OPTIONS]
-COMPRESS=10 phrase Zeck
-OLDKEYPHRASE=Yes
 ERRORLOG=DDisk.log
 DBCS=Yes
 REVISIONS=No
-LCID=0x411 0x0 0x0 ; 日本語
+LCID=0x409 0x0 0x0 ; 英語 (U.S.)
 REPORT=Yes
 CHARSET=128
 CONTENTS=TOP_PAGE
@@ -20,11 +18,5 @@ DDisk.rtf
 HELP_DEFAULT=TOP_PAGE
 
 [MAP]
+#include ..\..\..\..\..\..\vs\VC98\MFC\Include\AFXHELP.HM
 #include <DDisk.hm>
-#include C:\Program Files\Microsoft Visual Studio\VC98\MFC\Include\Afxhelp.hm
-
-[WINDOWS]
-MAIN="論理ディスク アクセスツール 使用の手引き",(20,20,600,450),28932,(r13170175),(r16777160),f7
-
-[CONFIG]
-BrowseButtons()

@@ -42,6 +42,7 @@ protected:
 	afx_msg void OnBtnBrowse();
 	afx_msg void OnBtnAbout();
 	afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
+	afx_msg void OnBtnMkuninst();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
