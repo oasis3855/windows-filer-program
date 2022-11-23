@@ -1,7 +1,7 @@
 ## ![icon](readme_pics/softdown-ico-copytime.gif) ShiftTime ファイル日時の一括補正 for Windows<!-- omit in toc -->
 
 ---
-[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [shifttimestamp](../ddisk/README.md) > ***shifttimestamp*** (this page)
+[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [shifttimestamp](../shifttimestamp/README.md) > ***shifttimestamp*** (this page)
 
 <br />
 <br />

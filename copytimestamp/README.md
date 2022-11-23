@@ -1,7 +1,7 @@
 ## ![icon](readme_pics/softdown-ico-copytime.gif) CopyTime ファイルタイムスタンプ（日時）コピー for Windows<!-- omit in toc -->
 
 ---
-[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [copytimestamp](../ddisk/README.md) > ***copytimestamp*** (this page)
+[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [copytimestamp](../copytimestamp/README.md) > ***copytimestamp*** (this page)
 
 <br />
 <br />
