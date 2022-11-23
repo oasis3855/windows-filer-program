@@ -1,5 +1,6 @@
-// ShiftTimeDlg.cpp : インプリメンテーション ファイル
-//
+// ************************************************************
+// メインダイアログ、バージョンダイアログ
+// ************************************************************
 
 #include "stdafx.h"
 #include "ShiftTime.h"
@@ -14,8 +15,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// アプリケーションのバージョン情報で使われている CAboutDlg ダイアログ
+
+// ************************************************************
+// CAboutDlg バージョンダイアログ
+// ************************************************************
 
 class CAboutDlg : public CDialog
 {
@@ -59,8 +62,11 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+
 /////////////////////////////////////////////////////////////////////////////
-// CShiftTimeDlg ダイアログ
+// ************************************************************
+// CShiftTimeDlg メインダイアログ
+// ************************************************************
 
 CShiftTimeDlg::CShiftTimeDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CShiftTimeDlg::IDD, pParent)
@@ -93,9 +99,6 @@ BEGIN_MESSAGE_MAP(CShiftTimeDlg, CDialog)
 	ON_WM_HELPINFO()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CShiftTimeDlg メッセージ ハンドラ
 
 BOOL CShiftTimeDlg::OnInitDialog()
 {
@@ -203,11 +206,14 @@ void CShiftTimeDlg::OnBtnBrowse()
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
 	char s_full[MAX_PATH], s_full2[MAX_PATH];
+	CString strTmp;
 	LPITEMIDLIST pidl;
 	BROWSEINFO bi;
+
 	ZeroMemory(&bi,sizeof(bi));
 	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_STATUSTEXT;
-	bi.lpszTitle = (LPCSTR)"対象フォルダの選択";
+	strTmp.LoadString(STR_MES_BROWSEFOLDER);
+	bi.lpszTitle = (LPCSTR)strTmp;		// 対象フォルダの選択
 	bi.hwndOwner = m_hWnd;
 	bi.pszDisplayName = (LPSTR)s_full2;		// 使わないが領域だけは渡す
 
@@ -248,7 +254,7 @@ void CShiftTimeDlg::OnBtnWildcard()
 			case 8 : 	SetDlgItemText(IDC_EDIT_FILE, "*.avi"); break;
 			case 9 : 	SetDlgItemText(IDC_EDIT_FILE, "*.dat"); break;
 			case 10 : 	SetDlgItemText(IDC_EDIT_FILE, "*.*"); break;
-			default : 	SetDlgItemText(IDC_EDIT_FILE, "プログラムのエラーです"); break;
+			default : 	SetDlgItemText(IDC_EDIT_FILE, "Program Error"); break;
 		}
 	}
 	
@@ -303,6 +309,8 @@ void CShiftTimeDlg::OnBtnExec()
 	BOOL bZeroSec = FALSE;		// ゼロ秒にあわせる
 	BOOL bLog = FALSE;			// ログを表示するかどうか
 	CString szTmp1, szTmp2, szLogMsg;
+	CString szAppName;			// アプリケーション名（ダイアログ用）
+	CString szTmpMsg;			// String Table 読み取り用
 	CString szPath;				// パス名（ファイル名含まず）
 	int nCount = 0;				// 処理完了ファイル数
 	struct _finddata_t finddata;	// findfirst用
@@ -311,6 +319,8 @@ void CShiftTimeDlg::OnBtnExec()
 	CFileStatus Fstatus;			// 日時を変更するときに使う
 
 	int nYear, nMonth, nDay, nHour, nMin, nSec, nOp;
+
+	szAppName.LoadString(IDS_APPNAME);
 
 	// チェックボックスの内容を読み取る
 	if(IsDlgButtonChecked(IDC_RADIO_SHIFT)) bShiftPrev = TRUE;
@@ -335,14 +345,16 @@ void CShiftTimeDlg::OnBtnExec()
 	GetDlgItemText(IDC_EDIT_PATH, szPath);
 	if(szPath.GetLength() <= 0)
 	{
-		MessageBox("対象フォルダが指定されていません", "エラー", MB_ICONSTOP|MB_OK);
+		szTmpMsg.LoadString(STR_ERR_NOFOLDER);	// 対象フォルダが指定されていません
+		MessageBox(szTmpMsg, szAppName, MB_ICONSTOP|MB_OK);
 		return;
 	}
 	// ファイル名（ワイルドカード可）のテキストボックスを読み取る
 	GetDlgItemText(IDC_EDIT_FILE, szTmp2);
 	if(szTmp2.GetLength() <= 0)
 	{
-		MessageBox("対象ファイルが指定されていません", "エラー", MB_ICONSTOP|MB_OK);
+		szTmpMsg.LoadString(STR_ERR_NOFILEWILD);	// 対象ファイルが指定されていません
+		MessageBox(szTmpMsg, szAppName, MB_ICONSTOP|MB_OK);
 		return;
 	}
 
@@ -350,15 +362,18 @@ void CShiftTimeDlg::OnBtnExec()
 
 	// ログ表示 のための文字列の作成
 	if(bLog)
-		szLogMsg.Format("検索パス %s\r\n調整時間 %d 日 %d 時間 %d 分%d 秒\r\n------------------------------\r\n\r\n", 
-				szTmp1, tmShift.GetDays(), tmShift.GetHours(), tmShift.GetMinutes(), tmShift.GetSeconds());
+	{
+		szTmpMsg.LoadString(STR_MES_01);	// 検索パス %s\r\n調整時間 %d 日 %d 時間 %d 分%d 秒\r\n------------------------------\r\n\r\n
+		szLogMsg.Format(szTmpMsg, szTmp1, tmShift.GetDays(), tmShift.GetHours(), tmShift.GetMinutes(), tmShift.GetSeconds());
+	}
 
 	// *****************************************
 	// FINDFIRST 関数による ファイルの検索
 	// *****************************************
     if( (hFind = _findfirst((LPCSTR)szTmp1, &finddata )) == -1L )
 	{
-		MessageBox("検索条件に一致するファイルが見つかりません", "情報", MB_ICONINFORMATION|MB_OK);
+		szTmpMsg.LoadString(STR_ERR_FINDNOTHING);	// 検索条件に一致するファイルが見つかりません
+		MessageBox(szTmpMsg, szAppName, MB_ICONINFORMATION|MB_OK);
 		return ;
 	}
 
@@ -379,9 +394,12 @@ void CShiftTimeDlg::OnBtnExec()
 
 			// ログ表示 のための文字列の作成
 			if(bLog)
-				szTmp1.Format(" 完了 : %s  (%04d/%02d/%02d %02d:%02d:%02d)\r\n", szTmp2,
+			{
+				szTmpMsg.LoadString(STR_MES_02);	//  完了 : %s  (%04d/%02d/%02d %02d:%02d:%02d)\r\n
+				szTmp1.Format(szTmpMsg, szTmp2,
 						Fstatus.m_mtime.GetYear(), Fstatus.m_mtime.GetMonth(), Fstatus.m_mtime.GetDay(),
 						Fstatus.m_mtime.GetHour(), Fstatus.m_mtime.GetMinute(), Fstatus.m_mtime.GetSecond());
+			}
 			// *****************************************
 			// ファイルへの書き込み
 			// *****************************************
@@ -390,7 +408,11 @@ void CShiftTimeDlg::OnBtnExec()
 			{	// コピー先ファイルに書き込めないとき
 				long dummy = e->m_lOsError;	// 「e が一回も使われていない」警告を回避するためのダミー
 				nCount--;	// あとで、インクリメントされるので、ここで減らしておく
-				if(bLog) szTmp1.Format(" 失敗 : %s\r\n", szTmp2);
+				if(bLog)
+				{
+					szTmpMsg.LoadString(STR_ERR_WRITE);	//  失敗 : %s\r\n
+					szTmp1.Format(szTmpMsg, szTmp2);
+				}
 			}
 			// 処理完了ファイル数をインクリメント
 			nCount++;
@@ -418,9 +440,12 @@ void CShiftTimeDlg::OnBtnExec()
 
 				// ログ表示 のための文字列の作成
 				if(bLog)
-					szTmp1.Format(" 完了 : %s  (%04d/%02d/%02d %02d:%02d:%02d)\r\n", szTmp2,
+				{
+					szTmpMsg.LoadString(STR_MES_02);	//  完了 : %s  (%04d/%02d/%02d %02d:%02d:%02d)\r\n
+					szTmp1.Format(szTmpMsg, szTmp2,
 							Fstatus.m_mtime.GetYear(), Fstatus.m_mtime.GetMonth(), Fstatus.m_mtime.GetDay(),
 							Fstatus.m_mtime.GetHour(), Fstatus.m_mtime.GetMinute(), Fstatus.m_mtime.GetSecond());
+				}
 				// *****************************************
 				// ファイルへの書き込み
 				// *****************************************
@@ -429,7 +454,11 @@ void CShiftTimeDlg::OnBtnExec()
 				{	// コピー先ファイルに書き込めないとき
 					long dummy = e->m_lOsError;	// 「e が一回も使われていない」警告を回避するためのダミー
 					nCount--;	// あとで、インクリメントされるので、ここで減らしておく
-					if(bLog) szTmp1.Format(" 失敗 : %s\r\n", szTmp2);
+					if(bLog)
+					{
+						szTmpMsg.LoadString(STR_ERR_WRITE);	//  失敗 : %s\r\n
+						szTmp1.Format(szTmpMsg, szTmp2);
+					}
 				}
 				// 処理完了ファイル数をインクリメント
 				nCount++;
@@ -443,7 +472,8 @@ void CShiftTimeDlg::OnBtnExec()
 	// ログの表示
 	if(bLog)
 	{
-		szTmp1.Format("\r\n------------------------------\r\n%d 個のファイルの日付を書き換えました", nCount);
+		szTmpMsg.LoadString(STR_MES_03);	// "\r\n------------------------------\r\n%d 個のファイルの日付を書き換えました"
+		szTmp1.Format(szTmpMsg, nCount);
 		szLogMsg += szTmp1;
 		
 		CDlgHelpDoc dlg;
@@ -456,9 +486,9 @@ void CShiftTimeDlg::OnBtnExec()
 	else
 	{
 		// ログを表示しない場合は、変更したファイル数を表示
-
-		szTmp1.Format("%d 個のファイルの日付を書き換えました", nCount);
-		MessageBox(szTmp1, "メッセージ", MB_ICONINFORMATION|MB_OK);
+		szTmpMsg.LoadString(STR_MES_04);	// "%d 個のファイルの日付を書き換えました"
+		szTmp1.Format(szTmpMsg, nCount);
+		MessageBox(szTmp1, szAppName, MB_ICONINFORMATION|MB_OK);
 	}
 }
 
@@ -469,24 +499,34 @@ void CShiftTimeDlg::OnBtnHelp()
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
 	CDlgHelpDoc dlg;
+	CString strTmp;
 
-	dlg.m_edit_main = "\r\n"
+	strTmp.LoadString(STR_SW_LANG);
+
+	if(strTmp == "JPN")
+	{	// 日本語リソースのとき
+
+		dlg.m_edit_main = "\r\n"
+		
 		"ShiftTime - タイムスタンプ調整ツール\r\n"
-		" Version 1.0   (freeware)\r\n"
+		" Version 1.1   (freeware)\r\n"
 		"\r\n\r\n"
 		" (C) 2002 INOUE. Hirokazu\r\n"
-		" inoue-h@iname.com\r\n"
 		"\r\n\r\n\r\n"
 		"【はじめに】\r\n"
 		"このプログラムは、複数のファイルのタイムスタンプ（時間）を一括して『一定時間ずらす』設定を行うツールです\r\n"
 		"当初の目的は、時差のある海外で撮影した「デジカメの画像ファイル」のタイムスタンプ"
 		"を現地時刻に設定しなおすため作成しています\r\n"
 		"\r\n"
+		"ファイルの作成日時および最終更新日時が対象です\r\n"
+		"\r\n"
 		"UNIX のスクリプト使い以外の方向けです :-) \r\n"
 		"\r\n\r\n"
 		"【動作環境】\r\n"
-		"Windows 95/98/Me, Windows NT/200/XP 日本語版\r\n"
-		"  MFC ver 4.2 のライブラリがインストールされていること (mfc42.dll, msvcrt.dll)\r\n"
+		"Windows 95/98/Me/NT/200/XP (日本語版および各国語版)\r\n"
+		"MFC42.DLL および MSVCRT.DLL がシステムフォルダに存在すること（Visual C++ 6.0 対応版） 古いバージョンのDLLの場合、起動できません。\r\n"
+		"\r\n"
+		"このプログラムには、日本語と英語の２種類の設定が含まれています。日本語以外のWindowsで起動した場合、自動的に英語モードで動作します。\r\n"
 		"\r\n\r\n"
 		"【インストール】\r\n"
 		"この画面を見ているということは、すでにインストール完了です\r\n"
@@ -550,27 +590,96 @@ void CShiftTimeDlg::OnBtnHelp()
 		"このプログラムとドキュメントをフリーウエアーとし、すべての著作権は作者である井上博計に属します。\r\n"
 		"著作者はこのプログラム及びドキュメントに関するいかなる保証も行いません。このプログラムの使用はすべて使用者の責任において行って下さい。\r\n"
 		"本製品の動作（正常動作、異常動作）によって被るすべての結果についての全責任は、本ソフトの使用者にあります。\r\n"
-		"著作者による許可無しにこのプログラムとドキュメントを販売することは出来ません。ただし、無料ソフトとして配布する場合はディスク料金や郵送料等、最低限の対価の授受を伴ってもかまいません。また、雑誌などの販促物に付属させるときもこれに準じます。\r\n"
 		"このプログラムのサポートは著作者宛電子メールを使用して行いますが、著作者がサポートを行うのはボランティアであって義務・責務ではありません。\r\n"
+		"\r\n"
 		"ネットワークを長期間留守にすることもありますので、自動的にメールが消去されている可能性もありますのでご注意下さい。\r\n"
-		"\r\n\r\n"
-		"「フリーウエアー、シェアウエアー」の記事として取り上げる場合や、同様の目的で書籍等の付属CD-ROMに収録することを、（作者からお断りの連絡をしない限り）許可します。\r\n"
-		"雑誌、書籍に掲載する場合は、作者までご一報ください（下記のすべてのアドレスに対して）。なお、長期間留守にしている場合もありますので、掲載の許諾の返事が（1週間以内に）無い場合は「許可した」ものとして扱えます。この場合見本誌は（作者の住所が判明しない場合）、「大阪中央郵便局止め 井上博計宛」でお願いします。\r\n"
-		"\r\n\r\n"
-		"雑誌、CD-ROM等メディアへの収録の許諾は、作者が最後の許諾通知を行ってから １年間 とします。この期間を超えた後に掲載を行う場合は、再度許諾を取らなければなりません。\r\n"
-		"掲載メディア１種類（雑誌なら１号分、販促配布分なら１週間以内に連続してプレスした１回分）につき、１件の許諾が必要です。\r\n"
-		"ただし、すでに製造が終わった「在庫品」の出荷および流通過程にある製品を除きます。\r\n"
-		"\r\n\r\n"
+		"\r\n"
+		"※ フリーメールから発信されたメールは、無視します。 ＨＴＭＬメールや添付ファイルも無視し、該当ユーザからのメールは２度と受信ません。ご注意ください。\r\n"
+		"\r\n"
+		"このプログラムを書籍等に掲載したり、販売しようとする全ての方へ\r\n"
+		"\r\n"
+		"著作者による許可無しにこのプログラムとドキュメントを販売することは出来ません。\r\n"
+		"ただし、無料ソフトとして配布する場合はディスク料金や郵送料等、最低限の対価の授受を伴ってもかまいません。また、雑誌などの販促物に付属させるときもこれに準じます。\r\n"
+		"\r\n"
+		"書籍・雑誌等の記事として取り上げる場合や、同様の目的で書籍等の付属CD-ROMに収録する場合は、作者の許諾を必要とします。\r\n"
+		"なお、長期間留守にしている場合もありますので、掲載の許諾の返事が無い場合は「不許可」と解釈してください。\r\n"
+		"\r\n"
+		"いかなる場合でも、このヘルプファイルに記述されている以上の作者の個人情報（メールアドレス等）を雑誌等に掲載したり、公開したりしないでください。\r\n"
+		"\r\n"
 		"【ユーザー・サポート連絡先】\r\n"
 		"電子メール\r\n"
-		"  inoue-h@iname.com\r\n"
+		"  下記のホームページでメールアドレスを公開しています。\r\n"
+		"  （ウイルスメール対策のための自衛手段にご協力願います）\r\n"
 		"ホームページ\r\n"
 		"  http://inoue-h.connect.to/\r\n"
-		"  http://www.vector.co.jp/authors/VA001911/freeware/index.html\r\n"
+		"  http://www.vector.co.jp/authors/VA001911/index.html\r\n"
 		"  http://www.ne.jp/asahi/oasis/inoue-h/index.html\r\n"
 		"\r\n"
 		"上記のアドレスが消滅している場合、検索エンジンで「井上博計」で検索してください。\r\n"
 		"My Journey - 旅のページ が私のページです\r\n";
+
+	}
+	else
+	{	// 英語リソースのとき
+		dlg.m_edit_main = "\r\n"
+		
+		"ShiftTime - Time Stamp Shifting Tool\r\n"
+		" Version 1.1   (freeware)\r\n"
+		"\r\n\r\n"
+		" (C) 2002 INOUE. Hirokazu\r\n"
+		"\r\n\r\n\r\n"
+		"[Introduction]\r\n"
+		"This program is designed for 'to shift time stamp in same folder' .\r\n"
+		"I made this program for handling digital camera data file taken abroad ."
+		"\r\n"
+		"This program change only 'create time' and 'last modified time' .\r\n"
+		"\r\n\r\n"
+		"[Target System]\r\n"
+		"Windows 95/98/Me/NT/200/XP (Japanese and Other Language)\r\n"
+		"This program requires MFC42.DLL and MSVCRT.DLL (designed for Visual C++ 6.0) .\r\n"
+		"\r\n"
+		"This program contains Japanese and English text resource, and Resource is automatically selected according to your OS .\r\n"
+		"\r\n\r\n"
+		"[Install]\r\n"
+		"No need to install .\r\n"
+		"\r\n\r\n"
+		"[Uninstall]\r\n"
+		"Only delete program file .\r\n"
+		"\r\n\r\n"
+		"[How to Use]\r\n"
+		" Folder :\r\n"
+		"   Designate folder with browse button , or input path string end with '\\' .\r\n"
+		"\r\n"
+		" File\r\n"
+		"   Designate file match path string using wildcard char .\r\n"
+		"\r\n"
+		"   *Full Path name must be under 256 chars .\r\n"
+		"\r\n"
+		" Shift\r\n"
+		"   For program convence , 1 month = 30 days , 1 year = 365 days .\r\n"
+		"\r\n"
+		"Set every input field, press 'Exec' button .\r\n"
+		"\r\n\r\n"
+		"\r\n\r\n"
+		"[Limitation]\r\n"
+		"Read Only file cannot be handled .\r\n"
+		"Object except file cannot be handled .\r\n"
+		"\r\n"
+		"Year range is from 1970 to 2032 .\r\n"
+		"\r\n\r\n"
+		"[Licence agreement]\r\n"
+		"This program is free ware. And all copyrights is reserved by INOUE. Hirokazu (author).\r\n"
+		"\r\n"
+		"There is no guarantee of this program functioning correctly, and author is not responsible to every result of this program. Other condition follows on this document in japanese resource (Japanese Language only, sorry).\r\n"
+		"\r\n"
+		"[User Support]\r\n"
+		"E-Mail\r\n"
+		"  Please find mail address from following HOMEPAGE !\r\n"
+		"Homepage\r\n"
+		"  http://inoue-h.connect.to/\r\n"
+		"  http://www.vector.co.jp/authors/VA001911/index.html\r\n"
+		"  http://www.ne.jp/asahi/oasis/inoue-h/index.html\r\n";
+	}
 
 	// ダイアログの表示
 	dlg.DoModal();

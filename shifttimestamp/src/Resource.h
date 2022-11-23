@@ -6,6 +6,17 @@
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_SHIFTTIME_DIALOG            102
+#define STR_MES_BROWSEFOLDER            102
+#define IDS_APPNAME                     103
+#define STR_ERR_NOFILEWILD              104
+#define STR_ERR_NOFOLDER                105
+#define STR_MES_01                      106
+#define STR_ERR_FINDNOTHING             107
+#define STR_MES_02                      108
+#define STR_ERR_WRITE                   109
+#define STR_MES_03                      110
+#define STR_MES_04                      111
+#define STR_SW_LANG                     112
 #define IDR_MAINFRAME                   128
 #define IDD_DLG_HELPDOC                 129
 #define IDD_DLG_SELEXXT                 131

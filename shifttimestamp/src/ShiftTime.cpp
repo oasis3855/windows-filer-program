@@ -52,19 +52,13 @@ BOOL CShiftTimeApp::InitInstance()
 	Enable3dControlsStatic();	// MFC と静的にリンクする場合はここをコールしてください。
 #endif
 
+	// ************************************************************
+	// メインダイアログの表示
+	// ************************************************************
+
 	CShiftTimeDlg dlg;
 	m_pMainWnd = &dlg;
-	int nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
-	{
-		// TODO: ダイアログが <OK> で消された時のコードを
-		//       記述してください。
-	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: ダイアログが <ｷｬﾝｾﾙ> で消された時のコードを
-		//       記述してください。
-	}
+	dlg.DoModal();
 
 	// ダイアログが閉じられてからアプリケーションのメッセージ ポンプを開始するよりは、
 	// アプリケーションを終了するために FALSE を返してください。
