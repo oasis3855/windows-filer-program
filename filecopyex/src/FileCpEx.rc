@@ -1,0 +1,290 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\FileCpEx.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\FileCpEx.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FILECPEX_DIALOG DIALOGEX 0, 0, 289, 219
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ファイル部分コピー ツール"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_TXT_FROM,65,10,160,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照",IDC_BTN_FROMBRW,230,10,55,15
+    EDITTEXT        IDC_TXT_TO,65,40,160,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照",IDC_BTN_TOBRW,230,40,55,15
+    EDITTEXT        IDC_TXT_START,65,65,40,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TXT_END,175,65,40,15,ES_AUTOHSCROLL
+    CONTROL         "ファイルエンドまでコピー",IDC_CK_FILEEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,175,85,110,15
+    COMBOBOX        IDC_CMB_BUFSIZ,65,105,40,75,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "読み込みに失敗したら、継続判断のダイアログを出す",
+                    IDC_CK_DLG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,130,
+                    260,15
+    EDITTEXT        IDC_TXT_RETRY,65,155,40,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TXT_SKIP,200,155,40,15,ES_AUTOHSCROLL
+    CONTROL         "読み込めなかったデータ部分を 「00H｣で埋める",
+                    IDC_CK_NULL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,175,
+                    260,15
+    PUSHBUTTON      "コピー開始",IDC_BTN_COPY,170,201,55,15
+    DEFPUSHBUTTON   "閉じる",IDOK,230,201,55,15
+    LTEXT           "コピー元",IDC_STATIC,5,10,55,15,SS_CENTERIMAGE
+    LTEXT           "コピー先",IDC_STATIC,5,40,55,15,SS_CENTERIMAGE
+    LTEXT           "バッファ単位",IDC_STATIC,5,105,55,15,SS_CENTERIMAGE
+    LTEXT           "バイト",IDC_STATIC,110,105,55,15,SS_CENTERIMAGE
+    LTEXT           "コピー範囲",IDC_STATIC,5,65,55,15,SS_CENTERIMAGE
+    LTEXT           "バイト目 から",IDC_STATIC,110,65,55,15,SS_CENTERIMAGE
+    LTEXT           "バイト目 まで",IDC_STATIC,220,65,55,15,SS_CENTERIMAGE
+    LTEXT           "失敗許容回数",IDC_STATIC,5,155,55,15,SS_CENTERIMAGE
+    LTEXT           "回",IDC_STATIC,110,155,15,15,SS_CENTERIMAGE
+    LTEXT           "再開スキップ",IDC_STATIC,145,155,50,15,SS_CENTERIMAGE
+    LTEXT           "バイト",IDC_STATIC,245,155,40,15,SS_CENTERIMAGE
+END
+
+IDD_DLG_ERR DIALOG DISCARDABLE  0, 0, 259, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "エラー回避処理の選択"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "コピーを終了する",IDC_RADIO_SEL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,30,240,15
+    CONTROL         "次のバイト数進んだところから再開する",IDC_RADIO_SEL2,
+                    "Button",BS_AUTORADIOBUTTON,10,50,240,15
+    EDITTEXT        IDC_TXT_ERRSKIP,35,70,55,15,ES_AUTOHSCROLL
+    CONTROL         "次の数だけエラーが出るまで、現在と同じ選択をした事とする",
+                    IDC_CK_SAMESEL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,
+                    95,240,15
+    EDITTEXT        IDC_TXT_MOREERR,35,115,55,15,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,200,135,55,15
+    LTEXT           "ファイルの読み込み中にエラーが発生しました",
+                    IDC_STXT_MES,5,10,245,15
+    LTEXT           "バイト進んだところから再開",IDC_STATIC,95,70,125,15,
+                    SS_CENTERIMAGE
+    LTEXT           "回目のエラーまで",IDC_STATIC,95,115,125,15,
+                    SS_CENTERIMAGE
+END
+
+IDD_DLG_PROGRESS DIALOG DISCARDABLE  0, 0, 214, 89
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "コピー状況"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "ファイルのコピー中",IDC_STXT_MES,10,10,195,15,
+                    SS_CENTERIMAGE
+    LTEXT           "コピー対象のバイト数 ：  バイト",IDC_STXT_TOTALSIZ,10,
+                    30,195,15,SS_CENTERIMAGE
+    LTEXT           "現在コピー中ののバイト数 ：  バイト",IDC_STXT_CURSIZ,10,
+                    50,195,15,SS_CENTERIMAGE
+    PUSHBUTTON      "中止",IDC_BTN_STOP,150,70,55,15
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "File Copy Ex\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "FileCpEx\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001 INOUE. Hirokazu\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "FileCpEx.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "File Copy Ex\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FILECPEX_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 282
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 212
+    END
+
+    IDD_DLG_ERR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_DLG_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 207
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_FILECPEX_DIALOG DLGINIT
+BEGIN
+    IDC_CMB_BUFSIZ, 0x403, 4, 0
+0x3231, 0x0038, 
+    IDC_CMB_BUFSIZ, 0x403, 4, 0
+0x3532, 0x0036, 
+    IDC_CMB_BUFSIZ, 0x403, 4, 0
+0x3135, 0x0032, 
+    IDC_CMB_BUFSIZ, 0x403, 5, 0
+0x3031, 0x3432, "\000" 
+    IDC_CMB_BUFSIZ, 0x403, 5, 0
+0x3032, 0x3834, "\000" 
+    IDC_CMB_BUFSIZ, 0x403, 5, 0
+0x3034, 0x3639, "\000" 
+    IDC_CMB_BUFSIZ, 0x403, 5, 0
+0x3138, 0x3239, "\000" 
+    IDC_CMB_BUFSIZ, 0x403, 6, 0
+0x3631, 0x3833, 0x0034, 
+    IDC_CMB_BUFSIZ, 0x403, 6, 0
+0x3233, 0x3637, 0x0038, 
+    IDC_CMB_BUFSIZ, 0x403, 6, 0
+0x3536, 0x3335, 0x0036, 
+    0
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\FileCpEx.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
