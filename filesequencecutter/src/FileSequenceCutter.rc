@@ -1,0 +1,229 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\FileSequenceCutter.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\FileSequenceCutter.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FILESEQUENCECUTTER_DIALOG DIALOGEX 0, 0, 319, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "FileSequenceCutter - ファイル連続カッター"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "元ファイル",IDC_STATIC,5,10,65,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SRCFILE,75,10,180,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照 ...",IDC_BTN_BROWSEFILE,260,10,55,15
+    LTEXT           "切り出し先フォルダ",IDC_STATIC,5,30,65,15,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_DSTPATH,75,30,180,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "フォルダ参照 ...",IDC_BTN_BROWSEPATH,260,30,55,15
+    LTEXT           "キーワード",IDC_STATIC,5,55,65,15,SS_CENTERIMAGE
+    COMBOBOX        IDC_CMB_KEYWORD,75,55,180,60,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "バイト毎にスペースを入れた16進数を入力する",IDC_STATIC,
+                    75,75,180,10,SS_CENTERIMAGE
+    CONTROL         "キーワードはスタート マーカー",IDC_RADIO_MARKER,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,75,100,180,10
+    CONTROL         "キーワードはエンド マーカー",IDC_RADIO_MARKER2,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,75,115,180,10
+    CONTROL         "About",IDC_BTN_ABOUT,"Button",BS_OWNERDRAW,120,135,15,
+                    15
+    PUSHBUTTON      "ヘルプ",IDC_BTN_HELP,140,135,55,15
+    PUSHBUTTON      "実行",IDC_BTN_EXEC,200,135,55,15
+    PUSHBUTTON      "終了",IDOK,260,135,55,15
+    CTEXT           "?",IDC_STATIC,120,135,15,15,SS_CENTERIMAGE | SS_SUNKEN
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,0,0
+ PRODUCTVERSION 0,1,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "FileSequenceCutter\0"
+            VALUE "FileVersion", "0, 1, 0, 0\0"
+            VALUE "InternalName", "FileSequenceCutter\0"
+            VALUE "LegalCopyright", "Copyright (C) 2004 INOUE. Hirokazu\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "FileSequenceCutter.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "FileSequenceCutter\0"
+            VALUE "ProductVersion", "0, 1, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FILESEQUENCECUTTER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_FILESEQUENCECUTTER_DIALOG DLGINIT
+BEGIN
+    IDC_CMB_KEYWORD, 0x403, 12, 0
+0x4646, 0x4420, 0x2038, 0x4646, 0x4520, 0x0031, 
+    IDC_CMB_KEYWORD, 0x403, 12, 0
+0x4646, 0x4420, 0x2038, 0x4646, 0x4520, 0x0030, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    STR_BTN_PICKFILE        "全てのファイル (*.*)|*.*||"
+    STR_DLG_ABOUTBOX        "FileSequenceCutter - ファイル連続カッター\n\n(C) 2004 INOUE. Hirokazu  All rights reserved\n\nversion 0.1 Free Software\n\nhttp://www.ne.jp/asahi/oasis/inoue-h/\nhttp://inoue-h.connect.to/"
+    STR_DLG_DLGTITLE        "FileSequenceCutter - ファイル連続カッター"
+    STR_ERR_NOKEYWORD       "切り出し用キーワードが正しく入力されていません"
+    STR_ERR_FILESRC_NOINPUT "入力ファイル名が指定されていません"
+    STR_ERR_PATHDST_NOINPUT "出力パスが入力されていません"
+    STR_ERR_OPEN_FILESRC    "入力ファイルが開けません"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\FileSequenceCutter.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

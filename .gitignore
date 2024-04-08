@@ -1,4 +1,10 @@
 *.bak
 *.BAK
 .vscode/
+# Visual C++ file
+*.dsw
+*.dsp
+*.opt
+*.ncb
+*.aps
 

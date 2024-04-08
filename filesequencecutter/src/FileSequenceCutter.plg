@@ -1,0 +1,29 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: FileSequenceCutter - Win32 Release--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+Creating command line "rc.exe /l 0x411 /fo"Release/FileSequenceCutter.res" /d "NDEBUG" /d "_AFXDLL" "K:\mnt\data-1\DATA\SRC\VC\FileSequenceCutter\FileSequenceCutter.rc"" 
+一時ﾌｧｲﾙ "F:\TEMP\_windows\inoue-h\RSP19.tmp" を作成し、次の内容を記録します
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/FileSequenceCutter.pdb" /machine:I386 /out:"Release/FileSequenceCutter.exe" 
+".\Release\FileSequenceCutter.obj"
+".\Release\FileSequenceCutterDlg.obj"
+".\Release\StdAfx.obj"
+".\Release\FileSequenceCutter.res"
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @"F:\TEMP\_windows\inoue-h\RSP19.tmp"" の作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ﾘｿｰｽをｺﾝﾊﾟｲﾙ中...
+ﾘﾝｸ中...
+
+
+
+<h3>結果</h3>
+FileSequenceCutter.exe - ｴﾗｰ 0、警告 0
+</pre>
+</body>
+</html>
