@@ -54,7 +54,7 @@ Last Updated : Oct. 2004
 jpeg/exifファイルのMagic Number「FF D8 FF E1」を指定した場合の、ファイル切り出しイメージ
 
 ![切り取りイメージ](./readme_pics/fig-jpegexif-cut.png#gh-light-mode-only)
-![切り取りイメージ](./readme_pics/fig-jpegexif-cut.png#gh-dark-mode-only)
+![切り取りイメージ](./readme_pics/fig-jpegexif-cut-dark.png#gh-dark-mode-only)
 
 <br />
 <br />
